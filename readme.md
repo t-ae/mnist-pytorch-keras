@@ -1,6 +1,6 @@
 # PyTorch vs Keras
 
-Compare [PyTorch](http://pytorch.org/) and [Keras](https://keras.io/).
+Compare [PyTorch](http://pytorch.org/) and [Keras](https://keras.io/)(TensorFlow backend).
 
 Train MNIST for one epoch.
 

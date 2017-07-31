@@ -3,6 +3,7 @@
 import argparse
 import time
 import tensorflow as tf
+import keras.backend as K
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPool2D, Dense, Dropout, Flatten, InputLayer
 from keras.datasets import mnist
@@ -40,6 +41,11 @@ if __name__ == '__main__':
     parser.add_argument('--use-cuda', action='store_true', default=False, help='Use CUDA')
     parser.add_argument('--verbose', action='store_true', default=False, help='verbose')
     args = parser.parse_args()
+
+    if K.backend() != "tensorflow":
+        os.environ['KERAS_BACKEND'] = "tensorflow"
+        reload(K)
+        assert K.backend() == "tensorflow"
 
     device = "/gpu:0" if args.use_cuda else "/cpu:0"
     with tf.device(device):
