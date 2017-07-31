@@ -27,7 +27,7 @@ class Net(nn.Module):
         x = F.max_pool2d(F.relu(self.conv2(x)), 2)
         x = x.view(x.size()[0], -1)
         x = F.relu(self.linear1(x))
-        x = F.dropout(x, 0.5)
+        x = F.dropout(x, 0.5, training=self.training)
         x = F.softmax(self.linear2(x))
 
         return x
