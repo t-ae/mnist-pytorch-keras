@@ -51,12 +51,11 @@ def main(use_cuda, verbose):
     loader = torch.utils.data.DataLoader(dataset, batch_size, shuffle=False)
 
     model = Net()
-    if use_cuda:
-        model.cuda()
     opt = optim.Adam(model.parameters())
 
     if use_cuda:
         torch.backends.cudnn.benchmark = True
+        model.cuda()
 
     # measure
     start = time.time()
