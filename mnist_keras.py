@@ -31,7 +31,7 @@ def main(verbose):
 
     # measure
     start = time.time()
-    model.fit(x_train, y_train, batch_size=32, epochs=1, verbose=verbose)
+    model.fit(x_train, y_train, batch_size=32, epochs=1, verbose=verbose, shuffle=False)
     print(f"Elapsed time: {time.time()-start}")
 
 
