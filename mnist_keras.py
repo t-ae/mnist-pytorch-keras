@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import os
 import argparse
 import time
 import tensorflow as tf
@@ -31,6 +32,8 @@ def main(verbose):
     model.compile("adam", "categorical_crossentropy")
 
     # measure
+
+    model.fit(x_train, y_train, batch_size=32, epochs=1, verbose=verbose, shuffle=False)
     start = time.time()
     model.fit(x_train, y_train, batch_size=32, epochs=1, verbose=verbose, shuffle=False)
     print(f"Elapsed time: {time.time()-start}")

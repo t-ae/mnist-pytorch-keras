@@ -67,8 +67,8 @@ def main(use_cuda, verbose):
         batch = Variable(batch)
         label = Variable(label)
         if use_cuda:
-            batch.cuda()
-            label.cuda()
+            batch = batch.cuda()
+            label = label.cuda()
 
         out = model.forward(batch)
 

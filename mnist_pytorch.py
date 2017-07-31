@@ -58,27 +58,31 @@ def main(use_cuda, verbose):
         model.cuda()
 
     # measure
-    start = time.time()
-    for i, data in enumerate(loader):
-        opt.zero_grad()
 
-        batch, label = data
-        batch = Variable(batch)
-        label = Variable(label)
-        if use_cuda:
-            batch.cuda()
-            label.cuda()
+    for x in range(2):
+        if x == 1:
+            start = time.time()
+        for i, data in enumerate(loader):
+            opt.zero_grad()
 
-        out = model.forward(batch)
+            batch, label = data
+            batch = Variable(batch)
+            label = Variable(label)
 
-        loss = -out.gather(1, label).log().mean()
-        loss.backward()
-        opt.step()
+            if use_cuda:
+                batch = batch.cuda()
+                label = label.cuda()
 
-        if verbose:
-            print(f"{i}: {loss.data[0]}", end=" "*16+"\r")
+            out = model.forward(batch)
 
-    print(f"Elapsed time: {time.time()-start}")
+            loss = -out.gather(1, label).log().mean()
+            loss.backward()
+            opt.step()
+
+            if verbose:
+                print(f"{i}: {loss.data[0]}", end=" "*16+"\r")
+        if x == 1:
+            print(f"Elapsed time: {time.time()-start}")
 
 
 if __name__ == '__main__':
