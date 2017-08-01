@@ -21,7 +21,7 @@ def main(verbose):
         InputLayer([28, 28, 1]),
         Conv2D(32, 5, padding="same", activation="relu"),
         MaxPool2D(),
-        Conv2D(32, 5, padding="same", activation="relu"),
+        Conv2D(64, 5, padding="same", activation="relu"),
         MaxPool2D(),
         Flatten(),
         Dense(512, activation="relu"),
