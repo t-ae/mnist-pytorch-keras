@@ -60,8 +60,8 @@ def main(use_cuda, verbose):
 
     # measure
 
-    for x in range(2):
-        if x == 1:
+    for epoch in range(2):
+        if epoch == 1:
             start = time.time()
         for i, data in enumerate(loader):
             opt.zero_grad()
@@ -81,7 +81,7 @@ def main(use_cuda, verbose):
 
             if verbose:
                 print(f"{i}: {loss.data[0]}", end=" "*16+"\r")
-        if x == 1:
+        if epoch == 1:
             print(f"Elapsed time: {time.time()-start}")
 
 
